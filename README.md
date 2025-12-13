@@ -1,20 +1,30 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# ImóvelAgenda Pro
 
-# Run and deploy your AI Studio app
+Plataforma de gestão para corretores de imóveis com inteligência artificial.
 
-This contains everything you need to run your app locally.
+## Funcionalidades
 
-View your app in AI Studio: https://ai.studio/apps/drive/17xd-zgWRkjH286ajQX0uBNfytJv084nJ
+- 📊 **Dashboard Completo**: Gestão de visitas e métricas.
+- 🏢 **Gestão de Imóveis**: Cadastro detalhado e status.
+- 🤖 **IA Integrada**: Geração automática de descrições com Gemini AI.
+- 👥 **Carteira de Clientes**: Histórico e preferências.
+- 📱 **PWA Ready**: Interface responsiva e mobile-first.
+- 🌙 **Dark Mode**: Tema escuro elegante na Landing Page.
 
-## Run Locally
+## Configuração
 
-**Prerequisites:**  Node.js
+Este projeto utiliza módulos ES6 diretamente no browser via importmap.
 
+### Variáveis de Ambiente
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Para o funcionamento da IA, é necessário uma API Key do Google Gemini.
+Em ambiente de desenvolvimento ou produção, certifique-se de que a chave está acessível.
+
+## Deploy na Vercel
+
+1. Importe o projeto na Vercel.
+2. Adicione a variável de ambiente `API_KEY` nas configurações do projeto.
+3. O arquivo `vercel.json` já está configurado para garantir o roteamento correto.
+
+---
+Desenvolvido com React, TailwindCSS e Google Gemini AI.

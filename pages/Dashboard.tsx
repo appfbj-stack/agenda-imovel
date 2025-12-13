@@ -4,6 +4,7 @@ import { ptBR } from 'date-fns/locale';
 import { storageService } from '../services/storageService';
 import { Visit, VisitStatus, Property, Client } from '../types';
 import { Calendar as CalendarIcon, CheckCircle, Clock, MapPin, Users, Plus, Edit2, Trash2, X, Save, AlertCircle } from 'lucide-react';
+import CorretorDashboard from '../components/CorretorDashboard';
 
 const Dashboard: React.FC = () => {
   const [visits, setVisits] = useState<Visit[]>([]);
@@ -118,12 +119,6 @@ const Dashboard: React.FC = () => {
     .sort((a, b) => parseISO(a.date).getTime() - parseISO(b.date).getTime())
     .slice(0, 5);
 
-  const stats = {
-    totalProperties: properties.length,
-    activeClients: clients.length,
-    scheduledVisits: visits.filter(v => v.status === VisitStatus.SCHEDULED).length
-  };
-
   if (loading) return <div className="flex justify-center p-10">Carregando...</div>;
 
   return (
@@ -144,42 +139,8 @@ const Dashboard: React.FC = () => {
         </button>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-500 font-medium">Imóveis na Carteira</p>
-              <p className="text-3xl font-bold text-brand-600 mt-1">{stats.totalProperties}</p>
-            </div>
-            <div className="p-3 bg-brand-50 rounded-full text-brand-600">
-              <CalendarIcon size={24} />
-            </div>
-          </div>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-500 font-medium">Clientes Ativos</p>
-              <p className="text-3xl font-bold text-green-600 mt-1">{stats.activeClients}</p>
-            </div>
-            <div className="p-3 bg-green-50 rounded-full text-green-600">
-              <CheckCircle size={24} />
-            </div>
-          </div>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-500 font-medium">Visitas Agendadas</p>
-              <p className="text-3xl font-bold text-orange-600 mt-1">{stats.scheduledVisits}</p>
-            </div>
-            <div className="p-3 bg-orange-50 rounded-full text-orange-600">
-              <Clock size={24} />
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* New Component: Stats Cards */}
+      <CorretorDashboard />
 
       {/* Today's Agenda */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
