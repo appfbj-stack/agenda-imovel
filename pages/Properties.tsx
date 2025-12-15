@@ -151,6 +151,9 @@ const Properties: React.FC = () => {
               
               <div className="flex items-center gap-4 my-3 text-sm text-gray-600">
                 <div className="flex items-center gap-1">
+                  <span className="font-medium bg-gray-100 px-2 py-0.5 rounded text-xs uppercase">{property.type}</span>
+                </div>
+                <div className="flex items-center gap-1">
                   <Bed size={16} />
                   <span>{property.bedrooms}</span>
                 </div>
@@ -249,13 +252,24 @@ const Properties: React.FC = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tipo</label>
-                  <select
-                    className="w-full p-2 border rounded-lg bg-white focus:ring-2 focus:ring-brand-500 outline-none"
+                  <input
+                    required
+                    list="property-types"
+                    type="text"
+                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-brand-500 outline-none"
+                    placeholder="Ex: Apartamento, Terreno, Sítio..."
                     value={formData.type}
-                    onChange={e => setFormData({...formData, type: e.target.value as PropertyType})}
-                  >
-                    {Object.values(PropertyType).map(t => <option key={t} value={t}>{t}</option>)}
-                  </select>
+                    onChange={e => setFormData({...formData, type: e.target.value})}
+                  />
+                  <datalist id="property-types">
+                    {Object.values(PropertyType).map(t => <option key={t} value={t} />)}
+                    <option value="Galpão" />
+                    <option value="Sítio" />
+                    <option value="Fazenda" />
+                    <option value="Studio" />
+                    <option value="Cobertura" />
+                    <option value="Loja" />
+                  </datalist>
                 </div>
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Endereço</label>
@@ -288,7 +302,7 @@ const Properties: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Quartos</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Quartos / Salas</label>
                   <input
                     required
                     type="number"

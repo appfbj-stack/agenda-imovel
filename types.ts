@@ -17,7 +17,7 @@ export interface Property {
   title: string;
   address: string;
   price: number;
-  type: PropertyType;
+  type: string; // Alterado de PropertyType para string para permitir digitação livre
   status: PropertyStatus;
   bedrooms: number;
   area: number; // m²
